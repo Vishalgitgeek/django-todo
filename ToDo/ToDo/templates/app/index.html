@@ -1,0 +1,22 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form method="POST" action="/">
+        {% csrf_token %}
+        {{ form.title }}
+       <input type="submit" name="Add Task">
+    </form>
+
+    {% for task in tasks %}
+    <div>
+        <p>{{ task.title }}</p>
+    </div>
+    {% endfor %}
+    
+</body>
+</html>
