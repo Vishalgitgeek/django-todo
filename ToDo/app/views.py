@@ -14,7 +14,7 @@ def index(request):
         form = TaskForm(request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponse('Task added successfully!')
+            return HttpResponse('Task added successfully! <br>  <a href = "/">Go to Home</a>')
 
     context = {'tasks': tasks, 'form': form}
     
@@ -29,6 +29,15 @@ def update_task(request, task_id):
         form = TaskForm(request.POST, instance = task)
         if form.is_valid():
             form.save()
-            return HttpResponse('Task updated successfully')
+            return HttpResponse('Task updated successfully' + '<br> <a href = "/">Go to Home</a>')
     context = {'form': form, 'task':task}
     return render(request, 'app/update_task.html', context)
+
+
+def delete_task(request, task_id):
+    task = Task.objects.get(id=task_id)
+    if request.method == 'POST':
+        task.delete()
+        return HttpResponse('task deleted successfully  <a href = "/">Go to Home</a>')
+    context = {'task': task}
+    return render(request, 'app/delete_task.html', context)
