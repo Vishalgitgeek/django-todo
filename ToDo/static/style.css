@@ -1,0 +1,23 @@
+.container{
+    background-color: #babec9;
+    padding: 20px;
+    width: 50%;
+    text-align: center;
+}
+.task-list {
+    text-align: center;
+    margin-top: 2px;
+    padding: 2px;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+.a{
+    color: rgb(214, 25, 25);
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+

@@ -1,7 +1,15 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
 <h1>Update task</h1>
 
-<form method="POST" action="{% url 'update_task' task.id %}">
+<div class = 'form task-list'>
+    <form method="POST" action="{% url 'update_task' task.id %}">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit">
-</form>
+    <a class = 'btn btn-outline-secondary' href="{% url 'index' %}">Cancel</a>
+    <input class = 'btn btn-outline-secondary' type="submit">
+    </form>
+</div>
+
+{% endblock %}

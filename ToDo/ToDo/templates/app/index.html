@@ -1,24 +1,33 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-    <form method="POST" action="/">
-        {% csrf_token %}
-        {{ form.title }}
-       <input type="submit" name="Add Task">
-    </form>
+{% extends 'app/base.html' %}
 
-    {% for task in tasks %}
-    <div>
-        <a href="{% url 'update_task' task.id  %}">Update</a>
-        <a href="{% url 'delete_task' task.id  %}">Delete</a>
-        <p>{{ task.title }}</p>
+{% block content %}
+    <div class = 'container sticky-top'>
+        <div class = 'top-header'><h1>To do list</h1></div>
+        <div class = 'header'>
+            <form class = 'mb-3 form' method="POST" action="/">
+                {% csrf_token %}
+                {{ form.title }}
+                <input class = 'btn btn-success' type="submit" name="Add Task">
+            </form>
+        </div>
+
+        
+        {% for task in tasks %}
+        <div class = 'task-list'>
+            {% if task.complete == True %}
+            <strike class = 'task-list'>{{ task.title }}</strike>
+            {% else %}
+            <span class = 'task-list'>{{ task.title }}</span>
+            <!-- <p>{{ task.title }}</p> -->
+            {% endif %}
+            <br>
+            <a class = 'btn btn-outline-secondary' href="{% url 'update_task' task.id  %}">Update</a>
+            <a class = 'btn btn-outline-secondary' href="{% url 'delete_task' task.id  %}">Delete</a>
+            <br>
+        </div>
+
+        {% endfor %}
+            
+        
     </div>
-    {% endfor %}
-    
-</body>
-</html>
+{% endblock %}
